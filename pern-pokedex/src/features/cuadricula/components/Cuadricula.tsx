@@ -4,11 +4,12 @@ import type { Pokemon } from "../interfaces/Pokemon.interface";
 import CardPokemon from "./CardPokemon";
 
 interface CuadriculaProps {
-  callback?: (pokemon: Pokemon) => void
+  callback?: (pokemon: Pokemon) => void,
+  favoritos :number []
 }
 
-export default function Cuadricula({ callback }: CuadriculaProps) {
-  const {favoritos} =  useFavoritos()
+export default function Cuadricula({ callback,favoritos }: CuadriculaProps) {
+  /*const {favoritos, agregar, toggleFav} =  useFavoritos()*/
  
   const {
     pokemones,
@@ -23,9 +24,21 @@ export default function Cuadricula({ callback }: CuadriculaProps) {
     searchPokemons,
   } = useBuscarPokemones({ initialPage: 1, initialPageSize: 30, favoritos });
 
-  
   if (isLoading) return <div>Cargando...</div>;
   if (isFetching) return <div>Refrescando...</div>;
+ 
+    const callbackFav = async (pokemon : Pokemon)=>{
+    
+    if(callback){
+    callback(pokemon);
+    }
+    /*toggleFav(pokemon);
+    await agregar.mutateAsync();*/
+
+  }
+
+
+
   return (
     <>
       <input
@@ -36,13 +49,16 @@ export default function Cuadricula({ callback }: CuadriculaProps) {
       />
       <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(theme(spacing.28),1fr))] rounded-2xl p-6">
 
-        {pokemones?.map((pokemon: Pokemon) => (
-          <CardPokemon
+        {pokemones?.map((pokemon: Pokemon) => {
+
+         const selected = favoritos.includes(pokemon.id);
+         return <CardPokemon
             key={pokemon.id}
             pokemon={pokemon}
-            callback={callback}
+            callback={callbackFav}
+            selected={selected}
           />
-        ))}
+        })}
       </div>
       {pokemones && (
         <div className="flex justify-center items-center mt-4 gap-2">

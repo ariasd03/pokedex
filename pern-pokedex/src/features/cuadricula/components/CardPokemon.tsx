@@ -1,20 +1,26 @@
+
 import type { Pokemon } from "../interfaces/Pokemon.interface";
 
 interface CardPokemonProps {
   pokemon: Pokemon,
-  callback?: (pokemon: Pokemon) => void
+  callback?: (pokemon: Pokemon) => void,
+  selected: boolean
 }
 
-export default function CardPokemon({ pokemon, callback }: CardPokemonProps) {
+
+export default function CardPokemon({ pokemon, callback , selected}: CardPokemonProps) {
 
   const { nombre, imagen } = pokemon
 
   return (
-    <div
+    <div 
+ 
       key={nombre}
-      className="bg-white/50 backdrop-blur-md rounded-lg p-4 flex flex-col items-center"
+      className={`${selected ?'bg-emerald-800' :'bg-white/50'} backdrop-blur-md rounded-lg p-4 flex flex-col items-center`}
       onClick={() => {
         if (callback) callback(pokemon)
+
+         
       }}
     >
       <h2>{nombre}</h2>

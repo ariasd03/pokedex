@@ -24,11 +24,6 @@ const useFavoritos = () => {
 
 
     const toggleFav = (pokemon:Pokemon)=>{
-        /*setFavs((prev) => {
-            if (prev.find((p) => p === pokemon.id))
-                return prev.filter((p) => p !== pokemon.id);
-            return [...prev, pokemon.id];
-        });*/
         if(favoritos.indexOf(pokemon.id) == -1){
             setFavs((a)=>[
                 ...a, pokemon.id

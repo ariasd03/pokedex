@@ -7,7 +7,7 @@ import useFavoritos from "./features/cuadricula/hooks/useFavoritos";
 
 function App() {
   const [preview, setPreview] = useState<Pokemon | null>(null)
-  const {toggleFav, agregar} =  useFavoritos()
+  const {toggleFav, agregar , favoritos} =  useFavoritos()
   const handlePokemon = (p: Pokemon) => {
     setPreview(p);
     toggleFav(p);
@@ -20,8 +20,9 @@ function App() {
         <Header />
         <div className="grid grid-cols-12 ml-20 mt-10">
           <div className="col-span-5 z-20">
-            <Cuadricula
+            <Cuadricula 
               callback={(pokemon: Pokemon) => handlePokemon(pokemon)}
+              favoritos = {favoritos}
             />
           </div>
           <div className="col-span-7">
