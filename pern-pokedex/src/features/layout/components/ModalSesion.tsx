@@ -1,3 +1,4 @@
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input, Modal } from '@mantine/core'
 import { useState } from 'react'
@@ -28,6 +29,7 @@ export default function ModalSesion({ onOpened, onClose }: { onOpened: boolean, 
     })
 
     const onSubmit = (data: formValues) => {
+        console.log("Datos: ", data)
         if (sesion) {
             crearUsuario(data)
         } else {
