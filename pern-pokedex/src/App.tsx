@@ -13,6 +13,7 @@ function App() {
     toggleFav(p);
     agregar.mutate()
   }
+
   return (
 
     <>
