@@ -20,9 +20,7 @@ useEffect(() => {
     <div className="p-10">
         <Cuadricula registrarFavoritos= {false} callback={pokemon => addPokemon(pokemon)}/>
     </div>
-      <div className="p-10">
-        <ListaEquipo />
-    </div>
+    <ListaEquipo />
   
     </>
   )
